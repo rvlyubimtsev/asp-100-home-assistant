@@ -131,6 +131,7 @@ Common opcodes:
 | `0x20` | PM2.5 | 2 bytes |
 | `0x22` | Filter life | 1 byte % |
 | `0x07` | Error | 1 byte |
+| `0x1C` | Auto-off indication | 1 byte bool (`1` = enable auto-off, `0` = disable) |
 | `0x1E` | Child lock | 1 byte bool |
 | `0x00` | Handshake | see §4 |
 | `0x80` | TimeSync | see §4 |

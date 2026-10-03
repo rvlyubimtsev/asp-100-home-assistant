@@ -1,4 +1,4 @@
-"""Switch entities: child lock, ionization, night."""
+"""Switch entities: child lock, ionization, night, backlight auto-off."""
 
 from __future__ import annotations
 
@@ -13,6 +13,7 @@ from .commands import (
     CMD_CHILD_LOCK,
     CMD_IONIZATION,
     CMD_NIGHT,
+    CMD_BACKLIGHT,
 )
 from .const import DOMAIN
 from .entity import Asp100Entity
@@ -28,6 +29,7 @@ SWITCHES: tuple[Asp100SwitchDescription, ...] = (
     Asp100SwitchDescription(key="child_lock", value_key="child_lock", opcode=CMD_CHILD_LOCK, translation_key="child_lock", icon="mdi:lock"),
     Asp100SwitchDescription(key="ionization", value_key="ionization", opcode=CMD_IONIZATION, translation_key="ionization", icon="mdi:atom"),
     Asp100SwitchDescription(key="night", value_key="night", opcode=CMD_NIGHT, translation_key="night", icon="mdi:weather-night"),
+    Asp100SwitchDescription(key="backlight", value_key="backlight", opcode=CMD_BACKLIGHT, translation_key="backlight", icon="mdi:led-outline",),
 )
 
 

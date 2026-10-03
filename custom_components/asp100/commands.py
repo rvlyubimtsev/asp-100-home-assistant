@@ -22,6 +22,7 @@ CMD_CURRENT_TEMPERATURE = 0x14
 CMD_CURRENT_CO2 = 0x16
 CMD_IONIZATION = 0x18
 CMD_TOTAL_TIME = 0x1A
+CMD_BACKLIGHT = 0x1C
 CMD_CHILD_LOCK = 0x1E
 CMD_CURRENT_PM2 = 0x20
 CMD_EXPENDABLES = 0x22  # filter life %
@@ -76,6 +77,7 @@ DECODERS: dict[int, tuple[str, callable]] = {
     CMD_EXPENDABLES: ("filter", _u8),
     CMD_DAMPER: ("damper", _u8),
     CMD_NIGHT: ("night", _bool),
+    CMD_BACKLIGHT: ("backlight", _bool),
 }
 
 

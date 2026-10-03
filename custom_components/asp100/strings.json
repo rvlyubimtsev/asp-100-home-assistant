@@ -35,7 +35,8 @@
     "switch": {
       "child_lock": { "name": "Child lock" },
       "ionization": { "name": "Ionization" },
-      "night": { "name": "Night mode" }
+      "night": { "name": "Night mode" },
+      "backlight": { "name": "Auto-off indication" }
     }
   }
 }

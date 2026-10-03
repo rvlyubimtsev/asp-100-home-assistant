@@ -10,7 +10,7 @@ Flow (all on the home LAN, protocol 2 / encrypted):
   2. fresh ECDH session (same Session crypto as pairing)
   3. handshake presenting the SAVED token (non-zero) -> device authenticates us
   4. TimeSync, then listen: the device pushes its current state as Cmd* frames
-  5. optionally send a command (fan speed / program / target temp) and watch the echo
+  5. optionally send a command (fan speed / program / target temp / backlight auto-off) and watch the echo
 
 Read-by-default and safe; it only writes if you pass a --set-* flag.
 Programs (--set-mode): 0=Off 1=Manual 2=Auto 3=Night 4=Turbo 5=Fan.
@@ -126,6 +126,7 @@ def main():
     ap.add_argument("--set-speed", type=int, help="set fan speed 1-7 (CmdSpeed 0x0F)")
     ap.add_argument("--set-mode", type=int, help="program (CmdMode 0x01): 0=Off 1=Manual 2=Auto 3=Night 4=Turbo 5=Fan")
     ap.add_argument("--set-target-temp", type=float, help="set target temperature °C (CmdTargetTemperature 0x02)")
+    ap.add_argument("--set-backlight", type=int, choices=(0, 1), help="auto-off indication: 1=enable, 0=disable (CmdBacklight 0x1C)",)
     ap.add_argument("--no-timesync", action="store_true")
     args = ap.parse_args()
 
@@ -208,7 +209,8 @@ def main():
         if t < 0:
             b1 |= 0x80
         send_cmd(0x02, bytes([b0, b1]), f"CmdTargetTemperature={t}")
-
+    if args.set_backlight is not None:
+        send_cmd(0x1C, bytes([args.set_backlight]), f"CmdBacklight={args.set_backlight}",)
     print("\n[done]")
 
 
